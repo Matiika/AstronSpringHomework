@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: App
+
+  jpa:
+    generate-ddl: true
+    show-sql: true
+
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    root: WARN
