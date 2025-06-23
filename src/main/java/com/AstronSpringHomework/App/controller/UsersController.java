@@ -4,14 +4,13 @@ import com.AstronSpringHomework.App.dto.userDto.UserCreateDTO;
 import com.AstronSpringHomework.App.dto.userDto.UserDTO;
 import com.AstronSpringHomework.App.dto.userDto.UserUpdateDTO;
 
-import com.AstronSpringHomework.App.mapper.UserMapStructMapper;
-import com.AstronSpringHomework.App.repository.UserRepository;
 import com.AstronSpringHomework.App.service.UserService;
 import com.AstronSpringHomework.App.validator.UserCreateDTOValidator;
-import com.AstronSpringHomework.App.validator.UserUpdateDTOValidator;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,16 +22,7 @@ import java.util.List;
 public class UsersController {
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    UserMapStructMapper userMapStructMapper;
-
-    @Autowired
     UserCreateDTOValidator userCreateDTOValidator;
-
-    @Autowired
-    UserUpdateDTOValidator userUpdateDTOValidator;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -46,7 +36,7 @@ public class UsersController {
 
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDTO create(@Valid @RequestBody UserCreateDTO userCreateDTO) {
+    public UserDTO create(@Valid @RequestBody UserCreateDTO userCreateDTO) throws JsonProcessingException {
         return userService.create(userCreateDTO);
     }
 
@@ -71,7 +61,7 @@ public class UsersController {
 
     @DeleteMapping("/users/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) throws JsonProcessingException {
         userService.delete(id);
     }
 
