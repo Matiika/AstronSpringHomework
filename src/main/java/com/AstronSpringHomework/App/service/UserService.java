@@ -15,7 +15,6 @@ import com.AstronSpringHomework.App.validator.UserUpdateDTOValidator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -86,7 +85,6 @@ public class UserService {
         userUpdateDTOValidator.validateUpdateDTO(userUpdateDTO);
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Пользователь с id=" + id + " не найден"));
-        userUpdateDTO.setId(id);
         userMapStructMapper.updateEntityFromDTO(userUpdateDTO, user);
         userRepository.save(user);
         return userMapStructMapper.toDTO(user);

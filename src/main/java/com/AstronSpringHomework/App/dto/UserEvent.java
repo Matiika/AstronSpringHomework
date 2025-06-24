@@ -1,7 +1,9 @@
 package com.AstronSpringHomework.App.dto;
 
 public class UserEvent {
+
     private String email;
+
     private String event;
 
     public UserEvent() {

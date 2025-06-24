@@ -10,7 +10,6 @@ import org.mapstruct.*;
 public interface UserMapStructMapper {
     UserDTO toDTO(User user);
 
-    @Mapping(target = "id", ignore = true)
     User fromCreateDTO(UserCreateDTO dto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

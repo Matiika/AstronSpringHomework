@@ -1,5 +1,11 @@
 # AstonSpringHomework
 
+## Приложение поддерживает Swagger
+
+После выполнения инструкции по запуску запросы можно посмотреть по адресу:
+
+    http://localhost:8080/swagger-ui/index.html
+
 ## Инструкция по запуску программы
 
 1. В файл src/main/resources/application.yml на место 
